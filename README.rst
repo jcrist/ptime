@@ -3,15 +3,15 @@ ptime
 
 A tool for measuring serial and parallel execution, and comparing the results.
 Provides an `IPython magic
-<http://ipython.readthedocs.io/en/stable/interactive/magics.html>`_ `%ptime`.
+<http://ipython.readthedocs.io/en/stable/interactive/magics.html>`_ ``%ptime``.
 This can be useful for measuring the benefits of parallelizing code, including
 measuring the effect of the `Global Interpreter Lock
-<https://wiki.python.org/moin/GlobalInterpreterLock>` (GIL).
+<https://wiki.python.org/moin/GlobalInterpreterLock>`_ (GIL).
 
 Example
 -------
 
-.. code:: python
+.. code::
 
     In [1]: %load_ext ptime
 
