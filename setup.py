@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(name='ptime',
       version='0.0.1',
-      description='A tool for measuring parallel speedups',
+      description='IPython magic for parallel profiling',
       url='http://github.com/jcrist/ptime/',
       maintainer='Jim Crist',
       maintainer_email='jiminy.crist@gmail.com',
