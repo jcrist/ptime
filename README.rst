@@ -48,8 +48,8 @@ Example
 Install
 -------
 
-This package is not yet released on PyPI. For now you can install from github:
+This package is available via pip:
 
 .. code::
 
-    pip install -U git+https://github.com/jcrist/ptime
+    pip install ptime
