@@ -17,13 +17,13 @@ def _exec(stmt, glob, local):
 def time_exec_serial(stmt, glob, local, n):
     start = default_timer()
     for i in range(n):
-        exec(stmt, glob, local)
+        exec(stmt, glob, local.copy())
     stop = default_timer()
     return stop - start
 
 
 def time_exec_parallel(stmt, glob, local, n):
-    threads = [Thread(target=_exec, args=(stmt, glob, local))
+    threads = [Thread(target=_exec, args=(stmt, glob, local.copy()))
                for i in range(n)]
     start = default_timer()
     for thread in threads:
@@ -120,13 +120,18 @@ class GILProfilerMagic(Magics):
         return_result = 'o' in opts
         quiet = 'q' in opts
 
+        if local_ns:
+            local = local_ns.copy()
+        else:
+            local = {}
+
         try:
             if setup:
-                exec(setup, self.shell.user_ns, local_ns)
+                exec(setup, self.shell.user_ns, local)
 
-            serial = time_exec_serial(stmt, self.shell.user_ns, local_ns,
+            serial = time_exec_serial(stmt, self.shell.user_ns, local,
                                       nthreads)
-            parallel = time_exec_parallel(stmt, self.shell.user_ns, local_ns,
+            parallel = time_exec_parallel(stmt, self.shell.user_ns, local,
                                           nthreads)
         except:
             self.shell.showtraceback()
